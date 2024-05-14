@@ -1,0 +1,35 @@
+The libraries are the followings:
+
+import time
+
+# selenium lib
+import selenium
+from selenium.common.exceptions import ElementClickInterceptedException
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
+# webdriver (chrome) - used with selenium
+from webdriver_manager.chrome import ChromeDriverManager
+
+# pandas lib
+import pandas as pd
+
+# reg ex lib
+import re
+
+# nltk lib
+import nltk
+
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from nltk.probability import FreqDist
+
+# matplotlib
+import matplotlib.pyplot as plt
+
+# word cloud
+from wordcloud import WordCloud
