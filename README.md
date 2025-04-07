@@ -38,6 +38,10 @@
 
 <h3 id="project-description">Project Description</h3>
 
+<p>This project aims to identify popular skillsets for software developers by analyzing job postings scraped from LinkedIn, Jobstreet, and Indeed. The collected data is cleaned, processed, and then analysed to extract frequently requested skills.
+With a primary focus on natural language processing (NLP), this project details the extraction and cleaning of data obtained from websites. The following chapters will provide an in-depth explanation and overview of these crucial steps, alongside resources and references. <br><br>
+Implemented in Python using Jupyter, the project is presented as a report containing code. To gain a comprehensive understanding of the implementation pipeline and the reasoning behind the code, readers are advised to consult the accompanying .ipynb file.</p>
+
 <p align="right">(<a href="#toc">back to top</a>)</p>
 
 
