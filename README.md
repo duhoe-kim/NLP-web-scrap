@@ -1,8 +1,8 @@
 <!-- Project Title -->
-<h1 align="center">NLP & Web Scraping <br/> for Software Developer Role Analysis</h1>
+<h1 id="toc" align="center">NLP & Web Scraping <br/> for Software Developer Role Analysis</h1>
 
 <!-- TABLE OF CONTENTS -->
-<h2 id="toc">Table of Contents</h2>
+<h2>Table of Contents</h2>
 <ol>
   <li><a href="#about-the-project">About The Project</a></li>
   <ul>
