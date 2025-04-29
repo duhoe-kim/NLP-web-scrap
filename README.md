@@ -38,9 +38,12 @@
 
 <h3 id="project-description">Project Description</h3>
 
-<p>This project aims to identify popular skillsets for software developers by analyzing job postings scraped from LinkedIn, Jobstreet, and Indeed. The collected data is cleaned, processed, and then analysed to extract frequently requested skills.
-With a primary focus on natural language processing (NLP), this project details the extraction and cleaning of data obtained from websites. The following chapters will provide an in-depth explanation and overview of these crucial steps, alongside resources and references. <br><br>
-Implemented in Python using Jupyter, the project is presented as a report containing code. To gain a comprehensive understanding of the implementation pipeline and the reasoning behind the code, readers are advised to consult the accompanying .ipynb file.</p>
+<p>
+  This project aims to identify popular skillsets for software developers by analyzing job postings scraped from LinkedIn, Jobstreet, and Indeed. The collected data is cleaned, processed, and then analysed to extract frequently requested skills.
+With a primary focus on natural language processing (NLP), this project details the extraction and cleaning of data obtained from websites. The following chapters will provide an in-depth explanation and overview of these crucial steps, alongside resources and references. 
+  
+  Implemented in Python using Jupyter, the project is presented as a report containing code. To gain a comprehensive understanding of the implementation pipeline and the reasoning behind the code, readers are advised to consult the accompanying .ipynb file.
+</p>
 
 <p align="right">(<a href="#toc">back to top</a>)</p>
 
@@ -48,6 +51,76 @@ Implemented in Python using Jupyter, the project is presented as a report contai
 <!-- FEATURES -->
 <h2 id="features">Features</h2>
 
+<h3>Data Extraction</h3>
+<p>
+  This project leverages Selenium for browser automation, enabling the creation of a controlled browser environment where a bot can interact with web elements. Consequently, the bot can perform actions like clicking buttons, entering text, and utilizing website features. A key aspect is the need to explicitly code every bot action.
+
+  To streamline data extraction, the process is segmented into manageable steps, with each step encapsulated within a dedicated function. This modular approach enhances code organization and maintainability.
+ 
+  The initial stage involves accessing and navigating the target website to reach the desired data. This stage is facilitated by the  open<WebsiteName>Page() function. This function opens and sets up the browser environment.<br>
+  
+  Internally, $\color{Green}{\textsf{open<'WebsiteName'>Page()}}$ utilizes smaller functions that operate on the same browser instance (passed as an argument) to navigate to the desired data:
+
+  <ul>
+    <li>
+      $\color{Green}{\textsf{loginTo<'WebsiteName'>(browser)}}$ : <br>
+      Logs into the website by finding and filling the ID and password fields, then clicking the login button
+    </li>
+    <li>
+      $\color{Green}{\textsf{searchJobandLocation(browser)}}$ : <br>
+      Searches for "software developer" jobs in "singapore," enabling focused data extraction 
+      for a specific role andlocation, leading to more consistent results.
+    <li>
+      $\color{Green}{\textsf{filterDate<'WebsiteName'>(browser)}}$ : <br>
+      Filters out older job listings.
+    </li>
+    <li>
+      $\color{Green}{\textsf{filterJobType<'WebsiteName'>(browser)}}$ : <br>
+       Applies another filter to extract more relevant job data.
+    </li>
+  </ul>
+        
+  The second phase involves extracting job posting data from the website's search results. This is managed by the extractDataFrom<WebsiteName>(browser) function.
+
+  <ul>
+    <li>
+      $\color{Green}{\textsf{extractDataFrom<'WebsiteName'>(browser)}}$ : <br>
+      This function systematically navigates through the website's pages, accessing up to 1000 job postings. 
+      It utilizes the $\color{Green}{\textsf{extractDataFrom<WebsiteName>Page(browser)}}$ function to 
+      retrieve data from each individual post.
+    </li>
+    <li>
+      $\color{Green}{\textsf{extractDataFrom<'WebsiteName'>Page(browser)}}$ : <br>
+      This function first identifies the total number of job postings and then accesses each one. 
+      From each accessed post, it extracts the job title and detailed job information.
+    </li>
+  </ul>
+</p>
+
+<h3>Data Preprocessing</h3>
+<p>
+  The extracted data is stored as CSV files via the Pandas library.
+
+  Several data quality issues impact the job information:
+  <ol>
+    <li>Varied Posting Styles: Due to the diverse sources (different companies), job postings lack uniformity in how they present candidate requirements.</li>
+    <li>Irrelevant Content: The job details contain supplementary information like descriptions and overviews, which, while important, are not the central focus of this project.</li>
+    <li>Textual Clutter: The data includes punctuation, special characters, and stopwords that introduce noise and hinder effective analysis.</li>
+  </ol>
+
+  The first challenge, inconsistent labeling of job requirements, is tackled by identifying frequently used terms. Each job posting is then analyzed to determine which of these keywords is present, effectively categorizing the requirement information and overcoming the lack of uniformity. 
+  
+  Second problem is handled with the  $\color{Green}{\textsf{getJobRequirements(df)}}$ function. The identified set of keywords is employed to extract pertinent information. By capturing the strings that follow these keywords, the system isolates the specific job requirements and removes irrelevant content from the initial data extraction. This is achieved by $\color{Green}{\textsf{geJobRequirements(df)}}$ 
+  
+  Finally, the cleanJobRequirement(df) function processes the data. Leveraging the NLTK library, it removes punctuation, special characters, and stopwords, resulting in a dataset of tokenized words free of irrelevant terms. This cleaning step prepares the data for subsequent analysis.
+</p>
+
+<h3>Data Preprocessing</h3>
+<p>
+  The final feature of this software developer role analysis project is the data analysis itself. To understand the desired programming languages and skills, the scraped job requirements are analyzed. 
+
+  Programming language frequencies are determined by referencing a web-scraped list and visualized as a bar graph using Matplotlib. By counting the occurrences of words within the job requirements, the most sought-after programming languages in the software development field are identified. Similarly, word frequency analysis is applied to skills, presented as a word cloud to highlight the most frequently mentioned requirements.
+</p>
 <p align="right">(<a href="#toc">back to top</a>)</p>
 
 
